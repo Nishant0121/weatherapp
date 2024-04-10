@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { ReactComponent as Cloud } from "../img/cloud.svg";
 
+import { FaCloud } from "react-icons/fa6";
+import { FaWind } from "react-icons/fa";
+import { GiWindsock } from "react-icons/gi";
+import { FaTemperatureLow } from "react-icons/fa6";
+import { BsCloudHazeFill } from "react-icons/bs";
+import { WiSunrise } from "react-icons/wi";
+import { TbSunset2 } from "react-icons/tb";
+import { WiHumidity } from "react-icons/wi";
+import { MdOutlineVisibility } from "react-icons/md";
+
 export default function Weather() {
   const [city, setCity] = useState("");
   const [weatherData, setWeatherData] = useState(null); // Change to null
@@ -61,78 +71,90 @@ export default function Weather() {
   }
 
   return (
-    <div className=" h-svh">
-      <div>
-        <input
-          type="text"
-          className="city border rounded-full p-2 m-2"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-        />
-        <button className="p-2 m-2 rounded-full " onClick={search}>
-          Search
-        </button>
-      </div>
-
-      {/* Conditionally render weather data */}
-      {weatherData && (
-        <div className=" sm:block md:block justify-center items-center">
-          <div className=" flex justify-center items-center">
-            <Cloud className="p-3 m-2" />
-            <div className=" block">
-              <div className="block border-b-2 border-white">
-                <p>Clouds</p>
-                <p>{weatherData.clouds.all}</p>
-              </div>
-              <div className="block border-b-2 border-white">
-                <p>
-                  Wind<span>Speed</span>
-                </p>
-                <p>{weatherData.wind.speed}m/s</p>
-              </div>
-              <div className="block border-b-2 border-white">
-                <p>
-                  Wind<span>Direction</span>
-                </p>
-                <p>{weatherData.wind.deg}^</p>
-              </div>
-            </div>
-          </div>
-
-          <div className=" grid grid-cols-3 m-3 p-3">
-            <div className=" p-3 border-b-2 border-r-2">
-              <p>{weatherData.main.temp}</p>
-              <p>Temperature</p>
-            </div>
-            <div className=" p-3 border-b-2 border-r-2">
-              <p>{weatherData.weather[0].main}</p>
-              <p>Weather</p>
-            </div>
-            <div className=" p-3 border-b-2">
-              <p>{convertUnixTimestamp(weatherData.sys.sunrise)}</p>
-              <p>Sunrise</p>
-            </div>
-            <div className=" p-3 border-r-2">
-              <p>{convertUnixTimestamp(weatherData.sys.sunset)}</p>
-              <p>Sunset</p>
-            </div>
-            <div className=" p-3 border-r-2">
-              <p>{weatherData.main.humidity}</p>
-              <p>Humidity</p>
-            </div>
-            <div className=" p-3">
-              <p>{weatherData.visibility}</p>
-              <p>Visibility</p>
-            </div>
-          </div>
-
-          <div className=" absolute bottom-0">
-            <p>
-              the data there id taken at {convertUnixTimestamp(weatherData.dt)}
-            </p>
-          </div>
+    <div>
+      <div className="">
+        <div>
+          <input
+            type="text"
+            className="city border rounded-full p-2 m-2"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+          />
+          <button className="p-2 m-2 rounded-full " onClick={search}>
+            Search
+          </button>
         </div>
-      )}
+        <div className=" flex justify-center items-center h-dvh w-100">
+          {weatherData && (
+            <div className=" sm:block md:block justify-center items-center wi-80">
+              <div className="flex justify-around items-center w-100">
+                <Cloud className="p-3 m-2" />
+                <div className=" block">
+                  <div className="block p-3 m-2 border-b-2 border-white">
+                    <div className=" flex justify-center items-center">
+                      <FaCloud size={40} />
+                    </div>
+                    <p className=" font-bold text-xl">
+                      {weatherData.clouds.all}
+                    </p>
+                  </div>
+                  <div className="block p-3 m-2 border-b-2 border-white">
+                    <div className=" flex justify-center items-center">
+                      <FaWind size={50} />
+                    </div>
+                    <p>{weatherData.wind.speed}m/s</p>
+                  </div>
+                  <div className="block p-3 m-2 border-b-2 border-white">
+                    <div className=" flex justify-center items-center">
+                      <GiWindsock size={50} />
+                    </div>
+                    <p>{weatherData.wind.deg}^</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className=" grid grid-cols-3 px-2 mt-3">
+                <div className=" p-3 border-b-2 border-r-2">
+                  <div className=" flex justify-center items-center">
+                    <FaTemperatureLow />
+                  </div>
+                  <p>{weatherData.main.temp}</p>
+                </div>
+                <div className=" p-3 border-b-2 border-r-2">
+                  <div className=" flex justify-center items-center">
+                    <BsCloudHazeFill size={20} />
+                  </div>
+                  <p>{weatherData.weather[0].main}</p>
+                </div>
+                <div className=" p-3 border-b-2">
+                  <div className=" flex justify-center items-center">
+                    <WiSunrise size={20} />
+                  </div>
+                  <p>{convertUnixTimestamp(weatherData.sys.sunrise)}</p>
+                </div>
+                <div className=" p-3 border-r-2">
+                  <div className=" flex justify-center items-center">
+                    <TbSunset2 size={20} />
+                  </div>
+                  <p>{convertUnixTimestamp(weatherData.sys.sunset)}</p>
+                </div>
+                <div className=" p-3 border-r-2">
+                  <div className=" flex justify-center items-center">
+                    <WiHumidity size={20} />
+                  </div>
+                  <p>{weatherData.main.humidity}</p>
+                </div>
+                <div className=" p-3">
+                  <div className=" flex justify-center items-center">
+                    <MdOutlineVisibility size={20} />
+                  </div>
+                  <p>{weatherData.visibility} m</p>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

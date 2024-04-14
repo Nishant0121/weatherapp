@@ -72,15 +72,18 @@ export default function Weather() {
 
   return (
     <div>
-      <div className="">
+      <div className="weather">
         <div>
           <input
             type="text"
-            className="city border rounded-full p-2 m-2"
+            className="city border text-dark rounded-full p-2 m-2"
             value={city}
             onChange={(e) => setCity(e.target.value)}
           />
-          <button className="p-2 m-2 rounded-full " onClick={search}>
+          <button
+            className="p-2 m-2 rounded-full bg-primary text-dark px-3"
+            onClick={search}
+          >
             Search
           </button>
         </div>
@@ -92,7 +95,7 @@ export default function Weather() {
                 <div className=" block">
                   <div className="block p-3 m-2 border-b-2 border-white">
                     <div className=" flex justify-center items-center">
-                      <FaCloud size={40} />
+                      <FaCloud size={30} />
                     </div>
                     <p className=" font-bold text-xl">
                       {weatherData.clouds.all}
@@ -100,20 +103,20 @@ export default function Weather() {
                   </div>
                   <div className="block p-3 m-2 border-b-2 border-white">
                     <div className=" flex justify-center items-center">
-                      <FaWind size={50} />
+                      <FaWind size={30} />
                     </div>
                     <p>{weatherData.wind.speed}m/s</p>
                   </div>
                   <div className="block p-3 m-2 border-b-2 border-white">
                     <div className=" flex justify-center items-center">
-                      <GiWindsock size={50} />
+                      <GiWindsock size={30} />
                     </div>
                     <p>{weatherData.wind.deg}^</p>
                   </div>
                 </div>
               </div>
 
-              <div className=" grid grid-cols-3 px-2 mt-3">
+              <div className=" grid grid-cols-3 px-2 mt-5">
                 <div className=" p-3 border-b-2 border-r-2">
                   <div className=" flex justify-center items-center">
                     <FaTemperatureLow />
